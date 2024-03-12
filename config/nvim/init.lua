@@ -1,0 +1,107 @@
+-- Encoding
+vim.opt.encoding = "utf-8"
+
+-- Lazy redraw (faster macros)
+vim.opt.lazyredraw = true
+
+-- Leader
+vim.g.mapleader = ' '
+vim.g.maplocalleader = '\\'
+
+-- Reload init.lua
+vim.keymap.set('n', '<f5>', '<cmd>source $MYVIMRC<cr>', {silent = true})
+
+-- Quick init.lua split
+vim.keymap.set('n', '<f6>', '<cmd>vsplit $MYVIMRC<cr>', {silent = true})
+
+-- Persistent undo
+vim.opt.undofile = true
+vim.opt.undodir = '$HOME/.local/share/nvim/undo'
+vim.opt.undolevels = 1000
+vim.opt.undoreload = 10000
+
+-- Disable swap files
+vim.opt.swapfile = false
+
+-- Line length indicator
+vim.opt.colorcolumn = {100, 120}
+
+-- Line numbering
+vim.opt.number = true
+vim.opt.relativenumber = true
+
+-- Leave 5 line ahead while scrolling
+vim.opt.scrolloff = 5
+
+-- Search case
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
+
+-- Tabs as 4 spaces
+vim.opt.tabstop = 4
+vim.opt.shiftwidth = 4
+vim.opt.expandtab = true
+
+-- Do not hide anything (like quotes in JSON)
+vim.opt.conceallevel = 0
+vim.g.vim_json_conceal = 0
+vim.g.tex_conceal = 0
+
+-- Quick movement
+vim.keymap.set('!', '<a-k>', '<up>')
+vim.keymap.set('!', '<a-j>', '<down>')
+vim.keymap.set('!', '<a-h>', '<left>')
+vim.keymap.set('!', '<a-l>', '<right>')
+vim.keymap.set('!', '<c-d>', '<delete>')
+vim.keymap.set('!', '<a-f>', '<esc>lwi')
+vim.keymap.set('!', '<a-b>', '<esc>bi')
+
+-- Put semicolon at the end of a line
+vim.keymap.set('n', '<leader>\'', 'm`$a;<esc>``')
+
+-- Display tabs and tailing spaces
+vim.opt.listchars = 'tab:▸ ,trail:·'
+vim.opt.list = true
+
+
+-- Cursor shape
+vim.opt.guicursor =
+    'n-o:hor50,i-c-ci:ver25,v-r-cr:block,' ..
+    'a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor,' ..
+    'sm:hor50-blinkwait175-blinkoff150-blinkon175'
+
+-- Spellcheck
+local text_filetypes = 'markdown,md,html,htm,text,tex'
+local spellcheck_group = vim.api.nvim_create_augroup('spellcheck', {clear = true})
+vim.api.nvim_create_autocmd({'FileType'}, {
+    pattern = text_filetypes,
+    group = spellcheck_group,
+    command = 'setlocal spell spelllang=en,pl',
+})
+
+-- Folding
+vim.optfoldmethod = 'indent'
+vim.optnofoldenable = true
+
+
+-- Line wrapping
+vim.opt.wrap = false
+local wrapping_group = vim.api.nvim_create_augroup('wrapping', {clear = true})
+vim.api.nvim_create_autocmd({'FileType'}, {
+    pattern = text_filetypes,
+    group = wrapping_group,
+    command = 'setlocal wrap'
+})
+vim.api.nvim_create_autocmd({'FileType'}, {
+    pattern = text_filetypes,
+    group = wrapping_group,
+    command = 'setlocal linebreak'
+})
+vim.api.nvim_create_autocmd({'FileType'}, {
+    pattern = text_filetypes,
+    group = wrapping_group,
+    command = 'setlocal breakindent'
+})
+
+-- Open new horizontal splits below active window instead of above
+vim.opt.splitbelow = true
