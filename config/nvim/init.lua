@@ -13,13 +13,6 @@ vim.opt.undoreload = 10000
 -- Disable swap files
 vim.opt.swapfile = false
 
--- Line length indicator
-vim.opt.colorcolumn = {100, 120}
-
--- Line numbering
-vim.opt.number = true
-vim.opt.relativenumber = true
-
 -- Leave 5 line ahead while scrolling
 vim.opt.scrolloff = 5
 
@@ -36,17 +29,6 @@ vim.opt.expandtab = true
 vim.opt.conceallevel = 0
 vim.g.vim_json_conceal = 0
 vim.g.tex_conceal = 0
-
--- Display tabs and tailing spaces
-vim.opt.listchars = 'tab:▸ ,trail:·'
-vim.opt.list = true
-
-
--- Cursor shape
-vim.opt.guicursor =
-    'n-o:hor50,i-c-ci:ver25,v-r-cr:block,' ..
-    'a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor,' ..
-    'sm:hor50-blinkwait175-blinkoff150-blinkon175'
 
 -- Spellcheck
 local text_filetypes = 'markdown,md,html,htm,text,tex'
@@ -136,3 +118,35 @@ vim.keymap.set('n', 'Y', 'y$')
 
 -- Clear search
 vim.keymap.set('n', '<leader>a', '<cmd>nohlsearch<cr>')
+
+-- Line numbering
+vim.opt.number = true
+vim.opt.relativenumber = true
+
+-- Highlight current line
+vim.opt.cursorline = true
+
+-- Line length indicator
+vim.opt.colorcolumn = {100, 120}
+
+-- Truecolor
+vim.opt.termguicolors = true
+
+-- Display tabs and tailing spaces
+vim.opt.listchars = 'tab:▸ ,trail:·'
+vim.opt.list = true
+
+-- Better fillchars
+table.insert(vim.opt.fillchars, 'vert:|')
+table.insert(vim.opt.fillchars, 'fold:─')
+table.insert(vim.opt.fillchars, 'foldopen:┌')
+table.insert(vim.opt.fillchars, 'foldclose:═')
+table.insert(vim.opt.fillchars, 'diff:╱')
+
+-- Cursor shape
+vim.opt.guicursor =
+    'n-o:hor50,i-c-ci:ver25,v-r-cr:block,' ..
+    'a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor,' ..
+    'sm:hor50-blinkwait175-blinkoff150-blinkon175'
+
+-- Plugins
