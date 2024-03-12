@@ -4,16 +4,6 @@ vim.opt.encoding = "utf-8"
 -- Lazy redraw (faster macros)
 vim.opt.lazyredraw = true
 
--- Leader
-vim.g.mapleader = ' '
-vim.g.maplocalleader = '\\'
-
--- Reload init.lua
-vim.keymap.set('n', '<f5>', '<cmd>source $MYVIMRC<cr>', {silent = true})
-
--- Quick init.lua split
-vim.keymap.set('n', '<f6>', '<cmd>vsplit $MYVIMRC<cr>', {silent = true})
-
 -- Persistent undo
 vim.opt.undofile = true
 vim.opt.undodir = '$HOME/.local/share/nvim/undo'
@@ -46,18 +36,6 @@ vim.opt.expandtab = true
 vim.opt.conceallevel = 0
 vim.g.vim_json_conceal = 0
 vim.g.tex_conceal = 0
-
--- Quick movement
-vim.keymap.set('!', '<a-k>', '<up>')
-vim.keymap.set('!', '<a-j>', '<down>')
-vim.keymap.set('!', '<a-h>', '<left>')
-vim.keymap.set('!', '<a-l>', '<right>')
-vim.keymap.set('!', '<c-d>', '<delete>')
-vim.keymap.set('!', '<a-f>', '<esc>lwi')
-vim.keymap.set('!', '<a-b>', '<esc>bi')
-
--- Put semicolon at the end of a line
-vim.keymap.set('n', '<leader>\'', 'm`$a;<esc>``')
 
 -- Display tabs and tailing spaces
 vim.opt.listchars = 'tab:▸ ,trail:·'
@@ -105,3 +83,56 @@ vim.api.nvim_create_autocmd({'FileType'}, {
 
 -- Open new horizontal splits below active window instead of above
 vim.opt.splitbelow = true
+
+-- Reload init.lua
+vim.keymap.set('n', '<f5>', '<cmd>source $MYVIMRC<cr>', {silent = true})
+
+-- Quick init.lua split
+vim.keymap.set('n', '<f6>', '<cmd>vsplit $MYVIMRC<cr>', {silent = true})
+
+-- Leader
+vim.g.mapleader = ' '
+vim.g.maplocalleader = '\\'
+
+-- Quick movement
+vim.keymap.set('!', '<a-k>', '<up>')
+vim.keymap.set('!', '<a-j>', '<down>')
+vim.keymap.set('!', '<a-h>', '<left>')
+vim.keymap.set('!', '<a-l>', '<right>')
+vim.keymap.set('!', '<c-d>', '<delete>')
+vim.keymap.set('!', '<a-f>', '<esc>lwi')
+vim.keymap.set('!', '<a-b>', '<esc>bi')
+
+-- Put semicolon at the end of a line
+vim.keymap.set('n', '<leader>\'', 'm`$a;<esc>``')
+
+-- Quick save
+vim.keymap.set('n', '<c-s>', '<cmd>w<cr>')
+vim.keymap.set('i', '<c-s>', '<esc><cmd>w<cr>')
+
+-- Quick quit
+vim.keymap.set('v', '<c-q>', '<esc>')
+vim.keymap.set('n', '<leader>q', '<cmd>q<cr>')
+vim.keymap.set('n', '<c-q>', '<cmd>bd<cr>')
+
+-- Delete with(out) yanking
+vim.keymap.set('', '<leader>d', '"_d')
+vim.keymap.set('', '<leader>D', '"_D')
+vim.keymap.set('', '<leader>c', '"_c')
+vim.keymap.set('', '<leader>C', '"_C')
+vim.keymap.set('', 'x', '"_x')
+vim.keymap.set('', 'X', '"_X')
+vim.keymap.set('', '<leader>x', 'x')
+vim.keymap.set('', '<leader>X', 'X')
+
+-- Tab switching shortcuts
+vim.keymap.set('n', '<c-l>', '<cmd>tabnext<cr>')
+vim.keymap.set('n', '<c-h>', '<cmd>tabprevious<cr>')
+vim.keymap.set('n', '<c-k>', '<cmd>tabnew<cr>')
+vim.keymap.set('n', '<c-j>', '<cmd>tabclose<cr>')
+
+-- Use Y for copying to end of the line
+vim.keymap.set('n', 'Y', 'y$')
+
+-- Clear search
+vim.keymap.set('n', '<leader>a', '<cmd>nohlsearch<cr>')
