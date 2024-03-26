@@ -1,12 +1,12 @@
 -- Encoding
-vim.opt.encoding = "utf-8"
+vim.opt.encoding = 'utf-8'
 
 -- Lazy redraw (faster macros)
 vim.opt.lazyredraw = true
 
 -- Persistent undo
 vim.opt.undofile = true
-vim.opt.undodir = '$HOME/.local/share/nvim/undo'
+vim.opt.undodir = vim.fn.expand('$HOME/.local/share/nvim/undo')
 vim.opt.undolevels = 1000
 vim.opt.undoreload = 10000
 
