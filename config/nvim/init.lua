@@ -150,3 +150,30 @@ vim.opt.guicursor =
     'sm:hor50-blinkwait175-blinkoff150-blinkon175'
 
 -- Plugins
+
+-- If lazy.nvim is already loaded, don't load it again.
+-- Without this, it complains.
+if package.loaded['lazy'] == nil then
+    local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+    if not vim.loop.fs_stat(lazypath) then
+      vim.fn.system({
+        "git",
+        "clone",
+        "--filter=blob:none",
+        "https://github.com/folke/lazy.nvim.git",
+        "--branch=stable", -- latest stable release
+        lazypath,
+      })
+    end
+    vim.opt.rtp:prepend(lazypath)
+
+    local plugins = {
+        {"nlknguyen/papercolor-theme", lazy = true, priority = 1000}
+    }
+
+    require("lazy").setup(plugins, opts)
+end
+
+vim.keymap.set('n', '<f4>', '<cmd>Lazy show<cr>')
+
+vim.cmd.colorscheme('PaperColor')
