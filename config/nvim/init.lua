@@ -203,7 +203,7 @@ if package.loaded['lazy'] == nil then
             config = function()
                 require('nvim-treesitter.configs').setup({
                     ensure_installed = {
-                        'c', 'cpp', 'rust', 'lua', 'vim', 'vimdoc',
+                        'c', 'cpp', 'rust', 'lua', 'vim', 'vimdoc', 'glsl'
                     },
                     auto_install = false,
                     highlight = {
