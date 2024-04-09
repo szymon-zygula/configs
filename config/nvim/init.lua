@@ -212,6 +212,33 @@ if package.loaded['lazy'] == nil then
                 })
             end
         },
+        {
+            -- Find files, buffers, symbols and other things
+            'nvim-telescope/telescope.nvim',
+            dependencies = {
+                'nvim-lua/plenary.nvim',
+                'debugloop/telescope-undo.nvim'
+            },
+            config = function()
+                require('telescope').setup({
+                    extensions = {
+                        undo = {}
+                    }
+                })
+
+                require('telescope').load_extension('undo')
+
+                local tlin = require('telescope.builtin')
+                vim.keymap.set('n', '<leader>fb', tlin.buffers)
+                vim.keymap.set('n', '<leader>fG', tlin.live_grep)
+                vim.keymap.set('n', '<leader>ff', tlin.find_files)
+                vim.keymap.set('n', '<leader>fg', tlin.git_files)
+                vim.keymap.set('n', '<leader>fr', tlin.oldfiles)
+
+                local tlex = require('telescope').extensions
+                vim.keymap.set('n', '<leader>fu', tlex.undo.undo)
+            end
+        },
     }
 
     require('lazy').setup(plugins, opts)
