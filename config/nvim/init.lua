@@ -154,14 +154,14 @@ vim.opt.guicursor =
 -- If lazy.nvim is already loaded, don't load it again.
 -- Without this, it complains.
 if package.loaded['lazy'] == nil then
-    local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+    local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
     if not vim.loop.fs_stat(lazypath) then
       vim.fn.system({
-        "git",
-        "clone",
-        "--filter=blob:none",
-        "https://github.com/folke/lazy.nvim.git",
-        "--branch=stable", -- latest stable release
+        'git',
+        'clone',
+        '--filter=blob:none',
+        'https://github.com/folke/lazy.nvim.git',
+        '--branch=stable', -- latest stable release
         lazypath,
       })
     end
@@ -171,7 +171,7 @@ if package.loaded['lazy'] == nil then
         {"nlknguyen/papercolor-theme", lazy = true, priority = 1000}
     }
 
-    require("lazy").setup(plugins, opts)
+    require('lazy').setup(plugins, opts)
 end
 
 vim.keymap.set('n', '<f4>', '<cmd>Lazy show<cr>')
