@@ -197,6 +197,21 @@ if package.loaded['lazy'] == nil then
             -- Allow [fFtT] to work accross multiple lines
             'dahu/vim-fanfingtastic'
         },
+        {
+            -- Better syntax highlighting
+            'nvim-treesitter/nvim-treesitter',
+            config = function()
+                require('nvim-treesitter.configs').setup({
+                    ensure_installed = {
+                        'c', 'cpp', 'rust', 'lua', 'vim', 'vimdoc',
+                    },
+                    auto_install = false,
+                    highlight = {
+                        enable = true
+                    }
+                })
+            end
+        },
     }
 
     require('lazy').setup(plugins, opts)
