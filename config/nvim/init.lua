@@ -178,6 +178,14 @@ if package.loaded['lazy'] == nil then
             -- Quotes, parenthesis, brackets, etc. autocompletion
             'Raimondi/delimitMate'
         },
+        {
+            -- Surroundings edition with [cdy]s
+            'kylechui/nvim-surround',
+            event = 'VeryLazy',
+            config = function()
+                require('nvim-surround').setup({})
+            end
+        },
     }
 
     require('lazy').setup(plugins, opts)
