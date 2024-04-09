@@ -168,7 +168,16 @@ if package.loaded['lazy'] == nil then
     vim.opt.rtp:prepend(lazypath)
 
     local plugins = {
-        {"nlknguyen/papercolor-theme", lazy = true, priority = 1000}
+        {
+            -- Colorscheme
+            'nlknguyen/papercolor-theme',
+            lazy = true,
+            priority = 1000
+        },
+        {
+            -- Quotes, parenthesis, brackets, etc. autocompletion
+            'Raimondi/delimitMate'
+        },
     }
 
     require('lazy').setup(plugins, opts)
