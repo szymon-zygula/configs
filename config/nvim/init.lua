@@ -186,6 +186,13 @@ if package.loaded['lazy'] == nil then
                 require('nvim-surround').setup({})
             end
         },
+        {
+            -- Commenting with gc, gcc (not the compiler)
+            'numToStr/Comment.nvim',
+            config = function()
+                require('Comment').setup()
+            end
+        },
     }
 
     require('lazy').setup(plugins, opts)
