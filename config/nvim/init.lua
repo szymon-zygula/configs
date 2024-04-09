@@ -243,6 +243,11 @@ if package.loaded['lazy'] == nil then
             -- Git integration
             'tpope/vim-fugitive'
         },
+        {
+            'lukas-reineke/indent-blankline.nvim',
+            main = 'ibl',
+            opts = {}
+        }
     }
 
     require('lazy').setup(plugins, opts)
