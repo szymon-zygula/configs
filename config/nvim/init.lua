@@ -239,6 +239,10 @@ if package.loaded['lazy'] == nil then
                 vim.keymap.set('n', '<leader>fu', tlex.undo.undo)
             end
         },
+        {
+            -- Git integration
+            'tpope/vim-fugitive'
+        },
     }
 
     require('lazy').setup(plugins, opts)
