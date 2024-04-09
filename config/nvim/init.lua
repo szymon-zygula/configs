@@ -193,6 +193,10 @@ if package.loaded['lazy'] == nil then
                 require('Comment').setup()
             end
         },
+        {
+            -- Allow [fFtT] to work accross multiple lines
+            'dahu/vim-fanfingtastic'
+        },
     }
 
     require('lazy').setup(plugins, opts)
