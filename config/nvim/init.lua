@@ -168,11 +168,8 @@ if package.loaded['lazy'] == nil then
     vim.opt.rtp:prepend(lazypath)
 
     local plugins = {
-        {
-            -- Colorscheme
-            'nlknguyen/papercolor-theme',
-            lazy = true,
-            priority = 1000
+        { -- Colorscheme
+            'sainnhe/sonokai'
         },
         {
             -- Quotes, parenthesis, brackets, etc. autocompletion
@@ -203,13 +200,23 @@ if package.loaded['lazy'] == nil then
             config = function()
                 require('nvim-treesitter.configs').setup({
                     ensure_installed = {
-                        'c', 'cpp', 'rust', 'lua', 'vim', 'vimdoc', 'glsl'
+                        'c',
+                        'cpp',
+                        'rust',
+                        'lua',
+                        'vim',
+                        'vimdoc',
+                        'glsl',
+                        'toml'
                     },
                     auto_install = false,
                     highlight = {
                         enable = true
                     }
                 })
+            end,
+            build = function()
+                vim.cmd('TSUpdate')
             end
         },
         {
@@ -244,15 +251,64 @@ if package.loaded['lazy'] == nil then
             'tpope/vim-fugitive'
         },
         {
+            -- Indentation guides
             'lukas-reineke/indent-blankline.nvim',
             main = 'ibl',
             opts = {}
+        },
+        {
+             -- File manager
+            'nvim-neo-tree/neo-tree.nvim',
+            dependencies = {
+                'nvim-lua/plenary.nvim',
+                'nvim-tree/nvim-web-devicons',
+                'MunifTanjim/nui.nvim'
+            },
+            config = function()
+                require("neo-tree").setup({
+                    filesystem = {
+                        follow_current_file = {
+                            enabled = true
+                        }
+                    }
+                })
+
+                vim.keymap.set('n', '<leader>N', '<cmd>Neotree right<cr>')
+            end
+        },
+        {
+            -- Language server
+            'VonHeikemen/lsp-zero.nvim',
+            dependencies = {
+                'williamboman/mason.nvim',
+                'williamboman/mason-lspconfig.nvim',
+                'neovim/nvim-lspconfig',
+                'hrsh7th/nvim-cmp',
+                'hrsh7th/cmp-nvim-lsp',
+                'L3MON4D3/LuaSnip',
+            },
+            config = function()
+                local lsp = require('lsp-zero')
+                lsp.on_attach(function(_, bufnr)
+                    lsp.default_keymaps({buffer = bufnr})
+                end)
+
+                require('mason').setup({})
+                require('mason-lspconfig').setup({
+                    ensure_installed = {},
+                    handlers = {lsp.default_setup}
+                })
+            end,
+            build = function()
+            end
         }
     }
 
-    require('lazy').setup(plugins, opts)
+    require('lazy').setup(plugins, {})
 end
 
 vim.keymap.set('n', '<f4>', '<cmd>Lazy show<cr>')
 
-vim.cmd.colorscheme('PaperColor')
+vim.g.sonokai_style = 'shusia'
+vim.g.sonokai_better_performance = 1
+vim.cmd.colorscheme('sonokai')
