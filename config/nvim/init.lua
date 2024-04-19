@@ -224,16 +224,21 @@ if package.loaded['lazy'] == nil then
             'nvim-telescope/telescope.nvim',
             dependencies = {
                 'nvim-lua/plenary.nvim',
-                'debugloop/telescope-undo.nvim'
+                'debugloop/telescope-undo.nvim',
+                'nvim-telescope/telescope-ui-select.nvim'
             },
             config = function()
                 require('telescope').setup({
                     extensions = {
-                        undo = {}
+                        undo = {},
+                        ['ui-select'] = {
+                            require("telescope.themes").get_dropdown({})
+                        }
                     }
                 })
 
                 require('telescope').load_extension('undo')
+                require('telescope').load_extension('ui-select')
 
                 local tlin = require('telescope.builtin')
                 vim.keymap.set('n', '<leader>fb', tlin.buffers)
@@ -243,7 +248,14 @@ if package.loaded['lazy'] == nil then
                 vim.keymap.set('n', '<leader>fr', tlin.oldfiles)
 
                 local tlex = require('telescope').extensions
-                vim.keymap.set('n', '<leader>fu', tlex.undo.undo)
+                vim.keymap.set('n', '<leader>u', tlex.undo.undo)
+
+                vim.keymap.set('n', 'gr', '<cmd>Telescope lsp_references<cr>')
+                vim.keymap.set('n', 'gd', '<cmd>Telescope lsp_definitions<cr>')
+                vim.keymap.set('n', 'gi', '<cmd>Telescope lsp_implementations<cr>')
+                vim.keymap.set('n', 'gi', '<cmd>Telescope lsp_implementations<cr>')
+                vim.keymap.set('n', 'gw', '<cmd>Telescope lsp_workspace_symbols<cr>')
+                vim.keymap.set('n', 'gl', '<cmd>Telescope diagnostics<cr>')
             end
         },
         {
