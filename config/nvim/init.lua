@@ -307,8 +307,19 @@ if package.loaded['lazy'] == nil then
 
                 require('mason').setup({})
                 require('mason-lspconfig').setup({
-                    ensure_installed = {},
-                    handlers = {lsp.default_setup}
+                    ensure_installed = {
+                        'rust_analyzer',
+                        'clangd',
+                        'lua_ls',
+                        'jsonls'
+                    },
+                    handlers = {
+                        lsp.default_setup,
+                        lua_ls = function()
+                            local lua_opts = lsp.nvim_lua_ls()
+                            require('lspconfig').lua_ls.setup(lua_opts)
+                        end
+                    }
                 })
             end,
             build = function()
