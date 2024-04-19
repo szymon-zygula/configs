@@ -321,6 +321,11 @@ if package.loaded['lazy'] == nil then
                         end
                     }
                 })
+
+                vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename)
+                vim.keymap.set('n', '<leader>1', vim.lsp.buf.format)
+                vim.keymap.set('n', '<leader>2', vim.lsp.buf.code_action)
+                vim.keymap.set('v', '<leader>2', vim.lsp.buf.code_action)
             end,
             build = function()
             end
