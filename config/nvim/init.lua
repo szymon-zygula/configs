@@ -190,6 +190,7 @@ if package.loaded['lazy'] == nil then
             'Raimondi/delimitMate'
         },
         {
+            -- Color matching delimiters
             'hiphish/rainbow-delimiters.nvim'
         },
         {
@@ -199,6 +200,10 @@ if package.loaded['lazy'] == nil then
             config = function()
                 require('nvim-surround').setup({})
             end
+        },
+        {
+            -- Smooth scrolling
+            'psliwka/vim-smoothie'
         },
         {
             -- Commenting with gc, gcc (not the compiler)
