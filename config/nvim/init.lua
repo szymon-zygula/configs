@@ -286,6 +286,20 @@ if package.loaded['lazy'] == nil then
             opts = {}
         },
         {
+            -- Keep undo history even after modification with tools other than neovim
+            'kevinhwang91/nvim-fundo',
+            dependencies = {
+                'kevinhwang91/promise-async'
+            },
+            config = function()
+                require('fundo').setup()
+            end,
+            build = function()
+                require('fundo').install()
+            end,
+            lazy = false
+        },
+        {
             -- File manager
             'nvim-neo-tree/neo-tree.nvim',
             dependencies = {
