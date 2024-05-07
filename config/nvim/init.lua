@@ -190,6 +190,9 @@ if package.loaded['lazy'] == nil then
             'Raimondi/delimitMate'
         },
         {
+            'hiphish/rainbow-delimiters.nvim'
+        },
+        {
             -- Surroundings edition with [cdy]s
             'kylechui/nvim-surround',
             event = 'VeryLazy',
