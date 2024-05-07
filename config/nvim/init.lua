@@ -149,6 +149,20 @@ vim.opt.guicursor =
     'a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor,' ..
     'sm:hor50-blinkwait175-blinkoff150-blinkon175'
 
+vim.keymap.set('n', '<leader>3', function()
+    vim.diagnostic.open_float(0, {
+        scope = "cursor",
+        focusable = false,
+        close_events = {
+            "CursorMoved",
+            "CursorMovedI",
+            "BufHidden",
+            "InsertCharPre",
+            "WinLeave",
+        },
+    })
+end)
+
 -- Plugins
 
 -- If lazy.nvim is already loaded, don't load it again.
