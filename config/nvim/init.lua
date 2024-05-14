@@ -327,6 +327,17 @@ if package.loaded['lazy'] == nil then
             end
         },
         {
+            -- Task runner
+            'stevearc/overseer.nvim',
+            lazy = false,
+            opts = {
+                task_list = {
+                    direction = 'bottom',
+                    min_height = 20,
+                }
+            }
+        },
+        {
             -- Language server
             'VonHeikemen/lsp-zero.nvim',
             dependencies = {
