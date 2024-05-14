@@ -183,7 +183,9 @@ if package.loaded['lazy'] == nil then
 
     local plugins = {
         { -- Colorscheme
-            'sainnhe/sonokai'
+            'sainnhe/sonokai',
+            lazy = true,
+            priority = 1000
         },
         {
             -- Quotes, parenthesis, brackets, etc. autocompletion
