@@ -338,6 +338,14 @@ if package.loaded['lazy'] == nil then
             }
         },
         {
+            -- Display list of diagnostics
+            "folke/trouble.nvim",
+            dependencies = { "nvim-tree/nvim-web-devicons" },
+            config = function()
+                vim.keymap.set('n', '<leader>t', '<cmd>TroubleToggle<cr>')
+            end
+        },
+        {
             -- Language server
             'VonHeikemen/lsp-zero.nvim',
             dependencies = {
@@ -360,7 +368,7 @@ if package.loaded['lazy'] == nil then
                         'rust_analyzer',
                         'clangd',
                         'lua_ls',
-                        'jsonls'
+                        'jsonls',
                     },
                     handlers = {
                         lsp.default_setup,
