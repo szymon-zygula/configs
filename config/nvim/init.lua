@@ -386,6 +386,67 @@ if package.loaded['lazy'] == nil then
             end,
             build = function()
             end
+        },
+        {
+            -- Debug adapter protocol
+            'puremourning/vimspector',
+            config = function()
+                vim.g.vimspector_sign_priority = {
+                    vimspectorBP = 50,
+                    vimspectorBPCond = 50,
+                    vimspectorBPLog = 50,
+                    vimspectorBPDisabled = 50,
+                }
+                -- function CustomizeVimspectorUI()
+                --   call win_gotoid( g:vimspector_session_windows.output )
+                --   100winc -
+                --   call win_gotoid( g:vimspector_session_windows.code )
+                -- end
+                --
+                -- augroup VimspectorUICustomistaion
+                --   autocmd!
+                --   autocmd User VimspectorUICreated call CustomizeVimspectorUI()
+                -- augroup END
+
+                -- vim.api.sign_define('vimspectorBP', { text = 'B', texthl = 'WarningMsg' })
+                -- vim.api.sign_define('vimspectorBPCond', { text = 'C', texthl = 'WarningMsg' })
+                -- vim.api.sign_define('vimspectorBPLog', { text = 'L', texthl = 'SpellRare' })
+                -- vim.api.sign_define('vimspectorBPDisabled', { text = 'D', texthl = 'LineNr' })
+                -- vim.api.sign_define('vimspectorPC', { text = '->', texthl = 'MatchParen', linehl = 'CursorLine' })
+                -- vim.api.sign_define('vimspectorPCBP', { text = 'B>', texthl = 'MatchParen', linehl = 'CursorLine' })
+                -- vim.api.sign_define('vimspectorCurrentThread', {
+                --     text = '->',
+                --     texthl = 'MatchParen',
+                --     linehl =
+                --     'CursorLine'
+                -- })
+                -- vim.api.sign_define('vimspectorCurrentFrame', { text = '->', texthl = 'Special', linehl = 'CursorLine' })
+
+                vim.keymap.set('n', '<A-b>', '<plug>VimspectorToggleBreakpoint<cr>')
+                vim.keymap.set('n', '<A-x>', '<plug>VimspectorToggleConditionalBreakpoint<cr>')
+                vim.keymap.set('n', '<A-f>', '<plug>VimspectorAddFunctionBreakpoint<cr>')
+
+                vim.keymap.set('n', '<A-c>', '<plug>VimspectorContinue<cr>')
+                vim.keymap.set('n', '<A-p>', '<plug>VimspectorPause<cr>')
+                vim.keymap.set('n', '<A-h>', '<plug>VimspectorStop<cr>')
+                vim.keymap.set('n', '<A-r>', '<plug>VimspectorRestart<cr>')
+                vim.keymap.set('n', '<A-q>', '<Cmd>VimspectorReset<cr>')
+
+                vim.keymap.set('n', '<A-n>', '<plug>VimspectorStepOver<cr>')
+                vim.keymap.set('n', '<A-s>', '<plug>VimspectorStepInto<cr>')
+                vim.keymap.set('n', '<A-o>', '<plug>VimspectorStepOut<cr>')
+
+                vim.keymap.set('n', '<A-k>', '<plug>VimspectorUpFrame<cr>')
+                vim.keymap.set('n', '<A-j>', '<plug>VimspectorDownFrame<cr>')
+                vim.keymap.set('n', '<A-m>', '<plug>VimspectorJumpToProgramCounter<cr>')
+                vim.keymap.set('n', '<A-w>', '<Cmd>VimspectorWatch\\ ')
+
+                vim.keymap.set('n', '<A-e>', '<plug>VimspectorBalloonEval<cr>')
+                vim.keymap.set('n', '<A-l>', '<plug>VimspectorGoToCurrentLine<cr>')
+                vim.keymap.set('n', '<A-u>', '<plug>VimspectorRunToCursor<cr>')
+                vim.keymap.set('n', '<A-d>', '<plug>VimspectorDisassemble<cr>')
+                vim.keymap.set('n', '<A-p>', '<cmd>VimspectorShowOutput Console<cr>')
+            end
         }
     }
 
