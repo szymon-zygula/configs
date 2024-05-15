@@ -327,6 +327,13 @@ if package.loaded['lazy'] == nil then
             end
         },
         {
+            -- Git signs
+            'lewis6991/gitsigns.nvim',
+            config = function()
+                require('gitsigns').setup({})
+            end
+        },
+        {
             -- Task runner
             'stevearc/overseer.nvim',
             lazy = false,
