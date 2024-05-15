@@ -346,9 +346,13 @@ if package.loaded['lazy'] == nil then
         },
         {
             -- Display list of diagnostics
-            "folke/trouble.nvim",
-            dependencies = { "nvim-tree/nvim-web-devicons" },
+            'folke/trouble.nvim',
+            dependencies = { 'nvim-tree/nvim-web-devicons' },
             config = function()
+                require('trouble').setup({
+                    height = 7,
+                    use_diagnostic_signs = true
+                })
                 vim.keymap.set('n', '<leader>t', '<cmd>TroubleToggle<cr>')
             end
         },
@@ -368,6 +372,13 @@ if package.loaded['lazy'] == nil then
                 lsp.on_attach(function(_, bufnr)
                     lsp.default_keymaps({ buffer = bufnr })
                 end)
+
+                lsp.set_sign_icons({
+                    error = '',
+                    warn = '',
+                    hint = '',
+                    info = ''
+                })
 
                 require('mason').setup({})
                 require('mason-lspconfig').setup({
