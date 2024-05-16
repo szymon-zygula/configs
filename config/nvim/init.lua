@@ -276,7 +276,6 @@ if package.loaded['lazy'] == nil then
 
                 local tlin = require('telescope.builtin')
                 vim.keymap.set('n', '<leader>fb', tlin.buffers)
-                vim.keymap.set('n', '<leader>fG', tlin.live_grep)
                 vim.keymap.set('n', '<leader>ff', tlin.find_files)
                 vim.keymap.set('n', '<leader>fg', tlin.git_files)
                 vim.keymap.set('n', '<leader>fr', tlin.oldfiles)
@@ -288,7 +287,8 @@ if package.loaded['lazy'] == nil then
                 vim.keymap.set('n', 'gd', '<cmd>Telescope lsp_definitions<cr>')
                 vim.keymap.set('n', 'gi', '<cmd>Telescope lsp_implementations<cr>')
                 vim.keymap.set('n', 'gi', '<cmd>Telescope lsp_implementations<cr>')
-                vim.keymap.set('n', 'gw', '<cmd>Telescope lsp_workspace_symbols<cr>')
+                vim.keymap.set('n', 'gw', '<cmd>Telescope lsp_dynamic_workspace_symbols<cr>')
+                vim.keymap.set('n', 'gG', tlin.live_grep)
                 vim.keymap.set('n', 'gl', '<cmd>Telescope diagnostics<cr>')
             end
         },
