@@ -204,6 +204,16 @@ if package.loaded['lazy'] == nil then
             end
         },
         {
+            -- Faster motions
+            'ggandor/leap.nvim',
+            dependencies = {
+                'tpope/vim-repeat'
+            },
+            config = function() 
+                require('leap').create_default_mappings()
+            end
+        },
+        {
             -- Smooth scrolling
             'psliwka/vim-smoothie'
         },
