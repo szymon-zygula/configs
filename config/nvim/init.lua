@@ -4,6 +4,9 @@ vim.opt.encoding = 'utf-8'
 -- Lazy redraw (faster macros)
 vim.opt.lazyredraw = true
 
+-- Share system clipboard
+vim.opt.clipboard = 'unnamedplus'
+
 -- Persistent undo
 vim.opt.undofile = true
 vim.opt.undodir = vim.fn.expand('$HOME/.local/share/nvim/undo')
