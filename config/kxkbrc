@@ -1,0 +1,5 @@
+[Layout]
+DisplayNames=,,,
+LayoutList=us,pl,gr,ru
+Use=true
+VariantList=colemak,,polytonic,

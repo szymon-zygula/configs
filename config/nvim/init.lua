@@ -212,7 +212,7 @@ if package.loaded['lazy'] == nil then
             dependencies = {
                 'tpope/vim-repeat'
             },
-            config = function() 
+            config = function()
                 require('leap').create_default_mappings()
             end
         },
@@ -228,8 +228,15 @@ if package.loaded['lazy'] == nil then
             end
         },
         {
-            -- Allow [fFtT] to work accross multiple lines
+            -- Allow [fFtT] to work across multiple lines
             'dahu/vim-fanfingtastic'
+        },
+        {
+            -- Undo tree visualization
+            'simnalamburt/vim-mundo',
+            config = function() 
+                vim.keymap.set('n', '<leader>u', '<cmd>MundoToggle<cr>')
+            end
         },
         {
             -- Better syntax highlighting
@@ -261,20 +268,10 @@ if package.loaded['lazy'] == nil then
             'nvim-telescope/telescope.nvim',
             dependencies = {
                 'nvim-lua/plenary.nvim',
-                'debugloop/telescope-undo.nvim',
                 'nvim-telescope/telescope-ui-select.nvim'
             },
             config = function()
-                require('telescope').setup({
-                    extensions = {
-                        undo = {},
-                        ['ui-select'] = {
-                            require("telescope.themes").get_dropdown({})
-                        }
-                    }
-                })
-
-                require('telescope').load_extension('undo')
+                require('telescope').setup({})
                 require('telescope').load_extension('ui-select')
 
                 local tlin = require('telescope.builtin')
@@ -282,9 +279,6 @@ if package.loaded['lazy'] == nil then
                 vim.keymap.set('n', '<leader>ff', tlin.find_files)
                 vim.keymap.set('n', '<leader>fg', tlin.git_files)
                 vim.keymap.set('n', '<leader>fr', tlin.oldfiles)
-
-                local tlex = require('telescope').extensions
-                vim.keymap.set('n', '<leader>u', tlex.undo.undo)
 
                 vim.keymap.set('n', 'gr', '<cmd>Telescope lsp_references<cr>')
                 vim.keymap.set('n', 'gd', '<cmd>Telescope lsp_definitions<cr>')
@@ -400,6 +394,9 @@ if package.loaded['lazy'] == nil then
                         'clangd',
                         'lua_ls',
                         'jsonls',
+                        'ltex',
+                        'texlab',
+                        'typos_lsp'
                     },
                     handlers = {
                         lsp.default_setup,
