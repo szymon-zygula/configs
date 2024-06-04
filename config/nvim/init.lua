@@ -209,7 +209,7 @@ if package.loaded['lazy'] == nil then
             dependencies = {
                 'tpope/vim-repeat'
             },
-            config = function() 
+            config = function()
                 require('leap').create_default_mappings()
             end
         },
@@ -397,6 +397,9 @@ if package.loaded['lazy'] == nil then
                         'clangd',
                         'lua_ls',
                         'jsonls',
+                        'ltex',
+                        'texlab',
+                        'typos_lsp'
                     },
                     handlers = {
                         lsp.default_setup,
