@@ -475,6 +475,20 @@ if package.loaded['lazy'] == nil then
                 vim.keymap.set('n', '<A-d>', '<plug>VimspectorDisassemble<cr>')
                 vim.keymap.set('n', '<A-p>', '<cmd>VimspectorShowOutput Console<cr>')
             end
+        },
+        {
+            -- Undo tree visualization
+            'github/copilot.vim',
+            config = function () 
+                vim.keymap.set('n', '<leader>ge', '<cmd>Copilot setup<cr>')
+                vim.keymap.set('n', '<leader>gs', '<cmd>Copilot status<cr>')
+                vim.keymap.set('n', '<leader>gp', '<cmd>Copilot panel<cr>')
+                vim.keymap.set('i', '<c-z>', 'copilot#Accept("\\<CR>")', {
+                    expr = true,
+                    replace_keycodes = false
+                })
+                vim.g.copilot_no_tab_map = true
+            end
         }
     }
 
