@@ -234,7 +234,7 @@ if package.loaded['lazy'] == nil then
         {
             -- Undo tree visualization
             'simnalamburt/vim-mundo',
-            config = function() 
+            config = function()
                 vim.keymap.set('n', '<leader>u', '<cmd>MundoToggle<cr>')
             end
         },
@@ -396,7 +396,7 @@ if package.loaded['lazy'] == nil then
                         'jsonls',
                         'ltex',
                         'texlab',
-                        'typos_lsp'
+                        'coq_lsp'
                     },
                     handlers = {
                         lsp.default_setup,
@@ -474,6 +474,22 @@ if package.loaded['lazy'] == nil then
                 vim.keymap.set('n', '<A-u>', '<plug>VimspectorRunToCursor<cr>')
                 vim.keymap.set('n', '<A-d>', '<plug>VimspectorDisassemble<cr>')
                 vim.keymap.set('n', '<A-p>', '<cmd>VimspectorShowOutput Console<cr>')
+            end
+        },
+        {
+            -- Coq interactive
+            'whonore/Coqtail',
+            config = function()
+                vim.g.coqtail_nomap = 1
+
+                vim.keymap.set('n', '<leader>kc', '<cmd>CoqStart<cr>')
+                vim.keymap.set('n', '<leader>kq', '<cmd>CoqStop<cr>')
+                vim.keymap.set('n', '<leader>kj', '<cmd>CoqNext<cr>')
+                vim.keymap.set('n', '<leader>kk', '<cmd>CoqUndo<cr>')
+                vim.keymap.set('n', '<leader>kl', '<cmd>CoqToLine<cr>')
+                vim.keymap.set('i', '<a-c>j', '<cmd>CoqNext<cr>')
+                vim.keymap.set('i', '<a-c>k', '<cmd>CoqUndo<cr>')
+                vim.keymap.set('i', '<a-c>l', '<cmd>CoqToLine<cr>')
             end
         }
     }
