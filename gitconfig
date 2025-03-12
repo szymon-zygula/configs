@@ -1,3 +1,6 @@
 [user]
 	email = szymon@zygula.eu
 	name = Szymon Zyguła
+
+[url "ssh://git@git.fjelowicki.pl:4545"]
+    insteadOf = https://git.fjelowicki.pl:3000
