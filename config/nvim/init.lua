@@ -33,6 +33,9 @@ vim.opt.conceallevel = 0
 vim.g.vim_json_conceal = 0
 vim.g.tex_conceal = 0
 
+-- Sign column always visible
+vim.opt.signcolumn = 'yes'
+
 -- Spellcheck
 local text_filetypes = 'markdown,md,html,htm,text,tex'
 local spellcheck_group = vim.api.nvim_create_augroup('spellcheck', { clear = true })
@@ -98,7 +101,7 @@ vim.keymap.set('i', '<c-s>', '<esc><cmd>w<cr>')
 -- Quick quit
 vim.keymap.set('v', '<c-q>', '<esc>')
 vim.keymap.set('n', '<leader>q', '<cmd>q<cr>')
-vim.keymap.set('n', '<c-q>', '<cmd>bd<cr>')
+vim.keymap.set('n', '<c-q>', '<cmd>bp<bar>sp<bar>bn<bar>bd<cr>')
 
 -- Delete with(out) yanking
 vim.keymap.set('', '<leader>d', '"_d')
@@ -372,9 +375,24 @@ if package.loaded['lazy'] == nil then
                 'neovim/nvim-lspconfig',
                 'hrsh7th/nvim-cmp',
                 'hrsh7th/cmp-nvim-lsp',
-                'L3MON4D3/LuaSnip',
+                'L3MON4D3/LuaSnip'
             },
             config = function()
+                local cmp = require('cmp')
+
+                cmp.setup({
+                    sources = {
+                        { name = 'nvim_lsp' },
+                    },
+                    snippet = {
+                        expand = function(args)
+                            require('luasnip').lsp_expand(args.body)
+                        end,
+                    },
+                    mapping = cmp.mapping.preset.insert({}),
+                })
+
+
                 local lsp = require('lsp-zero')
                 lsp.on_attach(function(_, bufnr)
                     lsp.default_keymaps({ buffer = bufnr })
@@ -395,8 +413,7 @@ if package.loaded['lazy'] == nil then
                         'lua_ls',
                         'jsonls',
                         'ltex',
-                        'texlab',
-                        'coq_lsp'
+                        'texlab'
                     },
                     handlers = {
                         lsp.default_setup,
@@ -477,18 +494,18 @@ if package.loaded['lazy'] == nil then
             end
         },
         {
-            -- Undo tree visualization
-            'github/copilot.vim',
-            config = function () 
-                vim.keymap.set('n', '<leader>ge', '<cmd>Copilot setup<cr>')
-                vim.keymap.set('n', '<leader>gs', '<cmd>Copilot status<cr>')
-                vim.keymap.set('n', '<leader>gp', '<cmd>Copilot panel<cr>')
-                vim.keymap.set('i', '<c-z>', 'copilot#Accept("\\<CR>")', {
-                    expr = true,
-                    replace_keycodes = false
-                })
-                vim.g.copilot_no_tab_map = true
-            end
+	     -- -- Copilot
+      --       'github/copilot.vim',
+      --       config = function ()
+      --           vim.keymap.set('n', '<leader>ge', '<cmd>Copilot setup<cr>')
+      --           vim.keymap.set('n', '<leader>gs', '<cmd>Copilot status<cr>')
+      --           vim.keymap.set('n', '<leader>gp', '<cmd>Copilot panel<cr>')
+      --           vim.keymap.set('i', '<c-z>', 'copilot#Accept("\\<CR>")', {
+      --               expr = true,
+      --               replace_keycodes = false
+      --           })
+      --           vim.g.copilot_no_tab_map = true
+      --       end
         },
         {
             -- Coq interactive
@@ -505,7 +522,16 @@ if package.loaded['lazy'] == nil then
                 vim.keymap.set('i', '<a-c>k', '<cmd>CoqUndo<cr>')
                 vim.keymap.set('i', '<a-c>l', '<cmd>CoqToLine<cr>')
             end
-        }
+        },
+        {
+            'zachbuchli/lazygit.nvim',
+            config = function()
+                local lazygit = require 'lazygit'
+
+                -- example keymap
+                vim.keymap.set('n', '<leader>lg', lazygit.show)
+            end,
+        },
     }
 
     require('lazy').setup(plugins, {})
