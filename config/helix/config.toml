@@ -1,0 +1,37 @@
+theme = "my"
+
+[editor]
+line-number = "relative"
+completion-timeout = 0
+completion-trigger-len = 1
+true-color = true
+rulers = [100, 120]
+cursorline = true
+
+[editor.cursor-shape]
+insert = "block"
+normal = "block"
+select = "block"
+
+[editor.file-picker]
+hidden = false
+
+[editor.indent-guides]
+render = true
+
+[keys.normal]
+C-q = ":buffer-close"
+C-s = ":write"
+C-j = "save_selection"
+
+[keys.normal."space"]
+q = ":quit"
+c = ":config-open"
+n = ":config-reload"
+
+[editor.inline-diagnostics]
+# cursor-line = "warning"
+# other-lines = "error"
+
+[editor.lsp]
+display-inlay-hints = true
